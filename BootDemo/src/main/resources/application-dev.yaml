@@ -1,0 +1,33 @@
+spring:
+
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
+  h2:
+    console:
+      enabled: true
+      path: /h2
+      settings:
+        web-allow-others: true
+  datasource:
+    url: jdbc:h2:mem:greetDb;DB_CLOSE_DELAY=-1
+    username: sa
+    password: 
+    driver-class-name: org.h2.Driver
+  jpa:
+    show-sql: true
+
+server:
+  port: 8085    
+
+management:
+  server:
+    port: 9000
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+    
+defaultgreeting: "DEV Hello"

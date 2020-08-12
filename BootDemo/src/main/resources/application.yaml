@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: bootdemo
+
+defaultgreeting: "Default Hello"
