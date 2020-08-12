@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    config:
+      uri: ${apigateway.config.url:http://webauditms:8888}
+      fail-fast: true  application:    name: apigateway
+  profiles:    active: dev

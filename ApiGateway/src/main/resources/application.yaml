@@ -1,0 +1,32 @@
+spring:
+  sleuth:
+    trace-id128: true
+    sampler:
+      probability: 1.0
+  zipkin:
+    enabled: true
+    base-url: ${zipkin.url:http://192.168.99.105:9411/}
+    
+eureka:
+  instance:
+    instanceId: ${spring.application.name}:${random.int}
+    leaseRenewalIntervalInSeconds: 2
+    leaseExpirationDurationInSeconds: 5
+    preferIpAddress: true
+    metadata-map:
+      zone: A
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    prefer-same-zone-eureka: true
+    serviceUrl:
+      defaultZone: ${apigateway.eureka.url:http://localhost:8761/eureka}
+       
+server:
+  port: 9000 
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  
