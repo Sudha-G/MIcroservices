@@ -1,0 +1,54 @@
+spring:
+  cloud:
+    bus:
+      enabled: true
+      destination: busConfigExchange
+    stream:
+      bindings:
+       webaudit-out: 
+        destination: ex.webaudit
+        group: q.audit
+      rabbit:
+        bindings:
+         webaudit-out:
+          producer:
+           routingKeyExpression: '''rkwebauditshim1'''
+           exchangeType: direct
+                 
+
+  rabbitmq:
+    host: ${rabbitmq.host:192.168.99.105}
+    port: ${rabbitmq.port:5672}
+
+
+  sleuth:
+    trace-id128: true
+    sampler:
+      probability: 1.0
+  zipkin:
+    enabled: true
+    base-url: ${zipkin.url:http://192.168.99.105:9411/}    
+    
+eureka:
+  instance:
+    instanceId: ${spring.application.name}:${random.int}
+    leaseRenewalIntervalInSeconds: 2
+    leaseExpirationDurationInSeconds: 5
+    preferIpAddress: true
+    metadata-map:
+      zone: A
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    prefer-same-zone-eureka: true
+    serviceUrl:
+      defaultZone: ${discountms.eureka.url:http://localhost:8761/eureka}
+      
+server:
+  port: 0 
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  

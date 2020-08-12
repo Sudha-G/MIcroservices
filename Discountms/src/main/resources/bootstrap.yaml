@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    config:
+      uri: ${discountms.config.url:http://192.168.99.105:8888}
+      fail-fast: true  application:    name: discountms
+  profiles:    active: dev

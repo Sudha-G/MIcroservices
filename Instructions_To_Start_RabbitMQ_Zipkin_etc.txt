@@ -1,0 +1,12 @@
+To be executed on the same command line ( same shell)
+
+git clone https://github.ibm.com/kapil-raina/mschassis.git
+cd mschassis/docker
+docker-machine ls
+docker-machine start docker-vm1
+docker-machine env docker-vm1  ( Take note of DOCKER_HOST)
+@FOR /f "tokens=*" %i IN ('docker-machine env docker-vm1') DO @%i
+startchassis -s rabbitmq
+startchassis -s zipkin
+Access rabbitmq on http://DOCKER_HOST:15672
+Access zipkin on http://DOCKER_HOST:9411

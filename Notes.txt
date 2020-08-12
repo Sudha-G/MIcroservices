@@ -1,0 +1,217 @@
+===== MICROSERVICES ATTRIBUTES ========
+- Based on Domain - Oriented around business functions
+- Loose Coupling
+- Isolation : Isolate Everything !
+- Not (just) a technology journey.
+- It is a journey , not a big bang .
+- MS leads to a Distributed System ( Distributed System means more complexity )
+- Cannot cheat Conway's Law.
+- High Cohesion & Loose Coupling
+- Polyglot & polyglot persistence
+- Cross Functional & Autonomous teams
+- No ACID tx across MS - Eventual Consistency
+- Design for failure.
+- Infrastructure Automation
+- Resilience
+
+==== REFERENCES====
+https://martinfowler.com/articles/microservices.html
+https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing
+https://scotch.io/bar-talk/s-o-l-i-d-the-first-five-principles-of-object-oriented-design
+https://martinfowler.com/bliki/TechnicalDebt.html
+https://en.wikipedia.org/wiki/Moore%27s_law
+https://spring.io/projects/spring-data
+https://12factor.net/
+https://microservices.io/
+https://www.amazon.in/Release-Production-Ready-Software-Pragmatic-Programmers/dp/0978739213
+https://www.amazon.in/Toaster-Project-Attempt-Electric-Appliance-ebook/dp/B007N209P4
+https://www.amazon.in/Building-Microservices-Designing-Fine-Grained-Systems-ebook/dp/B00T3N7XB4
+https://cloud.spring.io/spring-cloud-static/spring-cloud-gateway/2.2.2.RELEASE/reference/html/
+https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm
+https://martinfowler.com/articles/richardsonMaturityModel.html
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+https://www.cncf.io/
+https://docs.docker.com/engine/reference/builder/
+http://tryrabbitmq.com/
+https://www.reactivemanifesto.org/
+https://www.lightbend.com/
+https://w3.ibm.com/services/lighthouse/documents/153921
+https://cloud.spring.io/spring-cloud-static/spring-cloud-stream-binder-rabbit/2.2.1.RELEASE/spring-cloud-stream-binder-rabbit.html
+https://docs.docker.com/
+https://www.amazon.com/DevOps-Handbook-World-Class-Reliability-Organizations-ebook/dp/B01M9ASFQ3
+https://kubernetes.io/docs/home/
+https://kubernetes.io/docs/concepts/services-networking/service/
+
+
+=====Spring=====
+https://start.spring.io/
+
+Accepts            : What type of response is acceptable to the client
+Content-Type  : what is the media type of the data in request
+
+
+=======================
+A --> B => B'
+A --> B' (this)
+A' --> B' (not this)
+
+A - Atomic
+C - Consistent (Strong Consistency)
+I - Isolated
+D - Durable
+
+Eventual Consistency
+
+Semantic Versioning
+Major_Version.Minor_Version.Bug_Fix
+
+2.1.1 => 2.1.2
+    => 2.2.0
+    => 3.0.0
+
+Spring Profile :
+    - Named Configuration
+    - Set of configurtions
+    - Can be set dynamically
+    
+
+application-{spring.profiles.active}.yaml/properties
+application.yaml
+
+application.yaml  == application-default.yaml
+
+ENVIRONMENT (/env) - Key/Value Store
+    PropertySource
+    PropertySource
+    PropertySource
+    PropertySource (added by the config server)
+
+Normal Spring Boot:
+    - Server Start
+    - Application Context Begins To Start 
+    - Create Env Object
+    - Application Context is created.
+    - Application starts.
+Normal Spring Boot:
+    - Server Start
+    - Application Context Begins To Start 
+    - Bootstrap the cloud config as property source
+    - Create Env Object
+    - Application Context is created.
+    - Application starts.
+
+=======Async Remote Service Call Template============
+1. Lookup [Eureka]
+2. Decide on Load Balancer Strategy [Ribbon]
+3. Choose an Instance [Ribbon]
+4. Use some HTTP Client to make the network call. [RestTemplate]
+5. Something to detect failures and latency [Hystrix CircuitBreaker]
+6. Something to do serialization and deserialization(aka marshalling and unmarshalling) [RestTemplate]
+
+=============== CLOUD ===========================
+Platform
+Servers over internet
+Virtualization
+Distributed computing ?
+On Demand
+*aaS
+Storing Data Over Internet ?
+Virtual Networking
+Pay and Use
+HA and Scalable
+Interconnected System
+Network Of *****
+No need to maintain server
+
+What do we need to run some code:
+- Processing - Compute
+- Memory
+- Operating System
+- Storage
+===
+|
+V
+Server
+
+- Networking
+|
+V
+Datacenter 
+
+Capital Expenditures (CapEx) 
+Operational Expenses (OpEx)
+
+Hypervisor ==> VMs
+Manifest of :
+    # of vCPU
+    # of Memory
+    # RHEL/Ubuntu/Windows
+    # Network identity (IPV4 or IPV6)
+    # Disk Space
+
+-> Infrastructure as code.
+-> Charging for amount of resources used
+-> Companies whose was business was to provide virtualized resources => Cloud Providers.
+
+Cloud Compute, Cloud Native
+
+===================Docker===================
+Docker-Machine
+
+docker-machine ls
+docker-machine  create -d "virtualbox" --virtualbox-memory "1024"  docker-vm2
+docker-machine env docker-vm2
+@FOR /f "tokens=*" %i IN ('docker-machine env docker-vm2') DO @%i
+
+Docker
+docker images
+docker ps
+docker ps -a
+https://hub.docker.com/
+docker image pull nginx:latest
+docker run --name nginx nginx:latest
+docker stop container nginx
+docker rm e5ff40021df5
+docker run --name nginx -d -p 80:80 nginx:latest
+docker inspect 8bc871541819
+
+docker build -t kapilshekharraina/eurekaservervl01:1 .
+docker run -d -p 8761:8761 kapilshekharraina/eurekaservervl01:1
+docker logs e5cfbff4173b -f
+
+docker run -d -p 8888:8888 --env github.username=xxx --env github.password=xx kapilshekharraina/configservervl01:1
+
+docker push <image_name>:<tag>
+
+====== Kubernetes =========
+On all nodes
+sudo swapoff -a
+
+kubectl get nodes
+kubectl get secrets -n kube-system
+
+kubectl version --short
+kubectl api-resources
+
+Go to mschassis\k8s\rabbitmq
+kubectl apply -f rabbitmq-dep-k8s.yaml
+kubectl apply -f rabbitmq-dep-w-k8s.yaml
+kubectl apply -f rabbitmq-svc-k8s.yaml
+
+To acces k8S
+    Which Cluster
+    Which resources
+    Which action
+    With what Credentials
+
+
+
+
+
+
+
+
+
+
+
+
