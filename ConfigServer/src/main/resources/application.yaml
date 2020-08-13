@@ -3,7 +3,7 @@ spring:
     config:
       server:
         git:
-          uri: file:///C:/Microservices/configRepo
+          uri: https://github.com/Sudha-G/MIcroservices/tree/master/configRepo.git
           
     
 server:
