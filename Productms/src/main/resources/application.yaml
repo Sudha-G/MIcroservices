@@ -9,14 +9,14 @@ spring:
   h2:
     console:
       enabled: ${productms.console.enabled:true}
-      path: ${productms.console.path}
+      path: ${productms.console.path:/h2}
       settings:
         web-allow-others: true
   datasource:
     url: ${productms.datasource.url}
-    username: ${productms.datasource.username}
-    password: ${productms.datasource.password}
-    driver-class-name: ${productms.datasource.driver}
+    username: ${productms.datasource.username:sa}
+    password: ${productms.datasource.password" }
+    driver-class-name: ${productms.datasource.driver:org.h2.driver}
   jpa:
     show-sql: true
  
